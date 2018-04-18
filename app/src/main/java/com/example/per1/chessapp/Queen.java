@@ -34,10 +34,10 @@ public class Queen extends Piece
 
         // IMPLEMENT
         Bishop bi = new Bishop(x,y,white);
-        //Rook r = new Rook(x,y,white);
+        Rook r = new Rook(x,y,white);
 
         moves.addAll(bi.canMove(b));
-        //moves.addAll(r.canMove(b));
+        moves.addAll(r.canMove(b));
 
         return moves;
     }

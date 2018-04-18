@@ -29,27 +29,39 @@ public class Rook extends Piece {
 
     public ArrayList<Space> canMove(Board b)
     {
-        ArrayList<Space> moves = new ArrayList<Space>();
+        ArrayList<Space> moves = new ArrayList<>();
 
-        for(int mod = -1; mod <= 1; mod +=2){
-            for(int mod2 = -1; mod2 < 1; mod2 +=2){
-                for(int i = mod; i + getX()< 8 && i + getX() >= 0
-                        && i + getY() < 8 && i + getY()>=0; i+=mod){
-                    if(b.pieceAt(i+getX(),mod2*i+getY()).equals(null)){
-                        Space s = new Space(i+getX(),i+getY());
-                        moves.add(s);
-                    }
-                    else if (b.pieceAt(i+getX(),mod2*i+getY()).equals(this.getTeam())){
-                        break;
-                    }
-                    else{
-                        Space s = new Space(i+getX(),mod2*i+getY());
-                        moves.add(s);
-                        break;
-                    }
+
+        for(int mod = 1; mod >= -1; mod -=2) {
+            for (int y = this.getY(); y <= 7 && y>=0; y+=mod) {
+                if (b.pieceAt(this.getX(), y).equals("")) {
+                    moves.add(new Space(this.getX(), y));
+                }
+                else if (!b.pieceAt(this.getX(), y).equals(this.getTeam())) {
+                    break;
+                }
+                else {
+                    moves.add(new Space(this.getX(), y));
+                    break;
                 }
             }
         }
+
+        for(int mod = 1; mod >= -1; mod -=2) {
+            for (int x = this.getX(); x <= 7 && x>=0; x+=mod) {
+                if (b.pieceAt(x, this.getY()).equals("")) {
+                    moves.add(new Space(x, this.getY()));
+                }
+                else if (!b.pieceAt(x, this.getY()).equals(this.getTeam())) {
+                    break;
+                }
+                else {
+                    moves.add(new Space(x, this.getY()));
+                    break;
+                }
+            }
+        }
+
         return moves;
     }
 }

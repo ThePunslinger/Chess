@@ -25,13 +25,6 @@ public class Board
 
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-
 
 
     public void setPos(int x, int y, Piece p){
@@ -47,6 +40,7 @@ public class Board
             }
         }
     }
+
     public String pieceAt(int x, int y){
         Piece p = board[y][x];
         if(p == null){

@@ -28,18 +28,18 @@ public class Pawn extends Piece
         if(this.getTeam().equals("black")){
             mod = 1;
         }
-        if(b.pieceAt(x,y+mod * 1).equals("")){
-            Space s = new Space(x, y+ mod * 1);
+        if(b.pieceAt(x,y+mod).equals("")){
+            Space s = new Space(x, y+ mod);
             moves.add(s);
         }
-        if(x>0 && !b.pieceAt(x-1,y+mod * 1).equals(this.getTeam())
-                && !b.pieceAt(x-1,y+mod * 1).equals("")){
-            Space s = new Space(x-1, y+ mod * 1);
+        if(x>0 && !b.pieceAt(x-1,y+mod ).equals(this.getTeam())
+                && !b.pieceAt(x-1,y+mod).equals("")){
+            Space s = new Space(x-1, y+ mod);
             moves.add(s);
         }
-        if(x<7 && !b.pieceAt(x+1,y+mod * 1).equals(this.getTeam())
-                && !b.pieceAt(x+1,y+mod * 1).equals("")){
-            Space s = new Space(x+1, y+ mod * 1);
+        if(x<7 && !b.pieceAt(x+1,y+mod ).equals(this.getTeam())
+                && !b.pieceAt(x+1,y+mod).equals("")){
+            Space s = new Space(x+1, y+ mod);
             moves.add(s);
         }
         return moves;
