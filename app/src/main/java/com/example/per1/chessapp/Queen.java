@@ -23,10 +23,22 @@ public class Queen extends Piece
 
     public ArrayList<Space> canMove(Board b)
     {
-        ArrayList<Space> moves = new ArrayList<Space>();
+        ArrayList<Space> moves = new ArrayList<>();
         int x = this.getX();
         int y = this.getY();
+        boolean white = true;
+
+        if(this.getTeam().equals("white")) {
+            white = false;
+        }
+
         // IMPLEMENT
+        Bishop bi = new Bishop(x,y,white);
+        //Rook r = new Rook(x,y,white);
+
+        moves.addAll(bi.canMove(b));
+        //moves.addAll(r.canMove(b));
+
         return moves;
     }
 

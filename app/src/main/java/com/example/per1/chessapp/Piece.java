@@ -33,6 +33,13 @@ public abstract class Piece
     public int getY(){
         return y;
     }
+    public void setX(int val){
+         x = val;
+    }
+    public void setY(int val){
+         y = val;
+    }
+
 
     public void setTeam(boolean isWhite){
         if(isWhite){

@@ -13,8 +13,18 @@ public class Bishop extends Piece
     /**
      * Constructor for objects of class Bishop
      */
+
+
     public Bishop(boolean isWhite)
     {
+        this.setTeam(isWhite);
+        this.setName("Bishop");
+    }
+
+    public Bishop(int x, int y, boolean isWhite)
+    {
+        this.setX(x);
+        this.setY(y);
         this.setTeam(isWhite);
         this.setName("Bishop");
     }
