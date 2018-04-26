@@ -45,6 +45,7 @@ public class Rook extends Piece {
                     break;
                 }
             }
+
         }
 
         for(int mod = 1; mod >= -1; mod -=2) {
@@ -59,6 +60,15 @@ public class Rook extends Piece {
                     moves.add(new Space(x, this.getY()));
                     break;
                 }
+            }
+        }
+
+        for(int i = moves.size()-1; i >=0; i --) {
+            Board d = new Board(b);
+            Space s = moves.get(i);
+            d.setPos(s.getX(), s.getY(), this);
+            if(d.inCheck(this.getTeam())) {
+                moves.remove(i);
             }
         }
 

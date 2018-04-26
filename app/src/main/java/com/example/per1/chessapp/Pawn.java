@@ -42,6 +42,16 @@ public class Pawn extends Piece
             Space s = new Space(x+1, y+ mod);
             moves.add(s);
         }
+
+        for(int i = moves.size()-1; i >=0; i --) {
+            Board d = new Board(b);
+            Space s = moves.get(i);
+            d.setPos(s.getX(), s.getY(), this);
+            if (d.inCheck(this.getTeam())) {
+                moves.remove(i);
+            }
+        }
+
         return moves;
     }
 

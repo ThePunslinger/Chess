@@ -27,7 +27,7 @@ public class Knight extends Piece
         // put your code here
         int x = this.getX();
         int y = this.getY();
-        ArrayList<Space> moves = new ArrayList<Space>();
+        ArrayList<Space> moves = new ArrayList<>();
         for(int i = 2; i>=-2; i--){
             if(i != 0){
                 if(x+3-Math.abs(i)<=7 && y+i>=0 && y+i<=7 &&
@@ -42,6 +42,16 @@ public class Knight extends Piece
                 }
             }
         }
+
+        for(int i = moves.size()-1; i >=0; i --) {
+            Board d = new Board(b);
+            Space s = moves.get(i);
+            d.setPos(s.getX(), s.getY(), this);
+            if (d.inCheck(this.getTeam())) {
+                moves.remove(i);
+            }
+        }
+
         return moves;
     }
 }

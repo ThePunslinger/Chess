@@ -25,6 +25,15 @@ public class Board
 
     }
 
+    public Board(Board b)
+    {
+        for(int r = 0; r <8; r++){
+            for(int c = 0; c<8; c ++) {
+                board[r][c] = b.thePiece(r,c);
+            }
+        }
+    }
+
 
 
     public void setPos(int x, int y, Piece p){
@@ -47,6 +56,11 @@ public class Board
             return "";
         }
         return p.getTeam();
+    }
+
+    public Piece thePiece(int r, int c){
+        Piece p = board[r][c];
+        return p;
     }
 
     //possibly too much time!
