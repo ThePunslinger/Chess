@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Pawn extends Piece
 {
     // instance variables - replace the example below with your own
-
+    boolean firstMove = true;
 
     public Pawn(boolean isWhite)
     {
@@ -28,6 +28,13 @@ public class Pawn extends Piece
         if(this.getTeam().equals("black")){
             mod = 1;
         }
+
+        if(firstMove) {
+            Space s = new Space(x, (int)(3.9-mod*0.2));
+            //makes 3 for black, 4 for white
+            moves.add(s);
+        }
+
         if(b.pieceAt(x,y+mod).equals("")){
             Space s = new Space(x, y+ mod);
             moves.add(s);
@@ -43,6 +50,7 @@ public class Pawn extends Piece
             moves.add(s);
         }
 
+
         for(int i = moves.size()-1; i >=0; i --) {
             Board d = new Board(b);
             Space s = moves.get(i);
@@ -57,6 +65,7 @@ public class Pawn extends Piece
 
     public void move(int newX, int newY, Board b){
         super.move(newX, newY, b);
+        firstMove = false;
         if(this.getTeam().equals("black") && newY == 7){
             Queen q = new Queen(false);
             b.setPos(newX,newY, q);
