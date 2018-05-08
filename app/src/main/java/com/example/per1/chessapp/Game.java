@@ -1,5 +1,8 @@
 package com.example.per1.chessapp;
 
+import android.util.Log;
+import java.util.ArrayList;
+
 /**
  * Created by per1 on 4/18/18.
  */
@@ -22,9 +25,19 @@ public class Game
     }
 
 
+    public static void test() {
+        Board testBoard = new Board();
+        ArrayList<Space> moves = testBoard.thePiece(7,1).canMove(testBoard);
+        int x = moves.get(0).getX(); int y = moves.get(0).getY();
+        testBoard.thePiece(1,1).move(x,y,testBoard);
+        System.out.println("Yo it worked!");
+
+    }
+
     public static void main(String[] args)
     {
-        // put your code here
+        Game.test();
+        /*// put your code here
         int turns = 0;
         boolean gameInSession = true;
         while(gameInSession){
@@ -35,6 +48,6 @@ public class Game
                 //Player 2 takes turn
             }
             turns++;
-        }
+        }*/
     }
 }

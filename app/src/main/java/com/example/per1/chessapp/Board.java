@@ -22,11 +22,65 @@ public class Board
     public Board()
     {
         // initialise instance variables
+        Rook bRook1 = new Rook(false);
+        Rook bRook2 = new Rook(false);
+        Knight bKnight1 = new Knight(false);
+        Knight bKnight2 = new Knight(false);
+        Bishop bBishop1 = new Bishop(false);
+        Bishop bBishop2 = new Bishop(false);
+        Queen bQueen = new Queen(false);
+        King bKing = new King(false);
+        Pawn bPawn1 = new Pawn(false);
+        Pawn bPawn2 = new Pawn(false);
+        Pawn bPawn3 = new Pawn(false);
+        Pawn bPawn4 = new Pawn(false);
+        Pawn bPawn5 = new Pawn(false);
+        Pawn bPawn6 = new Pawn(false);
+        Pawn bPawn7 = new Pawn(false);
+        Pawn bPawn8 = new Pawn(false);
+
+        Piece[] blackPieces = {bRook1, bKnight1, bBishop1, bQueen, bKing, bBishop2, bKnight2, bRook2,
+                                bPawn1, bPawn2, bPawn3, bPawn4, bPawn5, bPawn6, bPawn7, bPawn8};
+        for(int c=0; c < 8; c ++) {
+            board[0][c]=blackPieces[c];
+        }
+        for(int c=0; c < 8; c ++) {
+            board[1][c]=blackPieces[c+8];
+        }
+
+        Rook wRook1 = new Rook(true);
+        Rook wRook2 = new Rook(true);
+        Knight wKnight1 = new Knight(true);
+        Knight wKnight2 = new Knight(true);
+        Bishop wBishop1 = new Bishop(true);
+        Bishop wBishop2 = new Bishop(true);
+        Queen wQueen = new Queen(true);
+        King wKing = new King(true);
+        Pawn wPawn1 = new Pawn(true);
+        Pawn wPawn2 = new Pawn(true);
+        Pawn wPawn3 = new Pawn(true);
+        Pawn wPawn4 = new Pawn(true);
+        Pawn wPawn5 = new Pawn(true);
+        Pawn wPawn6 = new Pawn(true);
+        Pawn wPawn7 = new Pawn(true);
+        Pawn wPawn8 = new Pawn(true);
+
+        Piece[] whitePieces = {wRook1, wKnight1, wBishop1, wQueen, wKing, wBishop2, wKnight2, wRook2,
+                wPawn1, wPawn2, wPawn3, wPawn4, wPawn5, wPawn6, wPawn7, wPawn8};
+        for(int c=0; c < 8; c ++) {
+            board[7][c]=blackPieces[c];
+        }
+        for(int c=0; c < 8; c ++) {
+            board[6][c]=blackPieces[c+8];
+        }
 
     }
 
     public Board(Board b)
     {
+        Space[] kingSpaces = b.kingInfo();
+        blackKingXPos = kingSpaces[1].getX(); blackKingYPos = kingSpaces[1].getY();;
+        whiteKingXPos = kingSpaces[0].getX(); whiteKingYPos = kingSpaces[0].getY();
         for(int r = 0; r <8; r++){
             for(int c = 0; c<8; c ++) {
                 board[r][c] = b.thePiece(r,c);
@@ -38,7 +92,7 @@ public class Board
 
     public void setPos(int x, int y, Piece p){
         board[y][x] = p;
-        if(p.getName().equals("King")){
+        if(p!= null && p.getName().equals("King")){
             if(p.getTeam().equals("white")){
                 whiteKingXPos=x;
                 whiteKingYPos=y;
@@ -63,13 +117,20 @@ public class Board
         return p;
     }
 
+    public Space[] kingInfo(){
+        Space[] spaces = new Space[2];
+        spaces[1]= new Space(blackKingXPos, blackKingYPos);
+        spaces[0] = new Space(whiteKingXPos,whiteKingYPos);
+        return spaces;
+    }
+
     //possibly too much time!
     public boolean inCheck(String team){
         if(team.equals("white")){
             for(int r = 0; r <8; r ++){
                 for(int c = 0; c < 8; c++){
                     Piece p = board[r][c];
-                    if(p.getTeam().equals("black")){
+                    if(p!=null&&p.getTeam().equals("black")){
                         ArrayList<Space> s = p.canMove(this);
                         for(int i = 0; i < s.size(); i++){
                             if(s.get(i).getX() == whiteKingXPos &&
@@ -86,7 +147,7 @@ public class Board
             for(int r = 0; r <8; r ++){
                 for(int c = 0; c < 8; c++){
                     Piece p = board[r][c];
-                    if(p.getTeam().equals("white")){
+                    if(p!=null && p.getTeam().equals("white")){
                         ArrayList<Space> s = p.canMove(this);
                         for(int i = 0; i < s.size(); i++){
                             if(s.get(i).getX() == blackKingXPos &&
