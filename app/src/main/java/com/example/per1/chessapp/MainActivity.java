@@ -27,21 +27,37 @@ public class MainActivity extends AppCompatActivity {
                     int viewHeight = gridBoard.getHeight();
                     int viewWidth = gridBoard.getWidth();
 
-                    int i = 0;
-                    for(int row=0; row<8; row+=2)
+                    int i=0;
+                    for(int row=0; row<8; row++)
                     {
+
                         for(int col=0; col<8; col++)
                         {
                             ImageView image = new ImageView(MainActivity.this);
-                            if(i % 2==0)
-                                image.setBackgroundColor(Color.BLACK);
-                            else
-                                image.setBackgroundColor(Color.WHITE);
-                            image.setMinimumWidth(viewWidth/8);
-                            image.setMinimumHeight(viewHeight/8);
-                            gridBoard.addView(image, i);
 
-                            i++;
+                            if(row%2!=0) {
+                                if (i % 2 == 0)
+                                    image.setBackgroundColor(Color.BLACK);
+                                else
+                                    image.setBackgroundColor(Color.WHITE);
+                                image.setMinimumWidth(viewWidth / 8);
+                                image.setMinimumHeight(viewHeight / 8);
+                                gridBoard.addView(image, i);
+
+                                i++;
+                            }
+                            else
+                            {
+                                if (i % 2 == 0)
+                                    image.setBackgroundColor(Color.WHITE);
+                                else
+                                    image.setBackgroundColor(Color.BLACK);
+                                image.setMinimumWidth(viewWidth / 8);
+                                image.setMinimumHeight(viewHeight / 8);
+                                gridBoard.addView(image, i);
+
+                                i++;
+                            }
                         }
                     }
 
