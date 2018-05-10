@@ -19,6 +19,7 @@ public class Bishop extends Piece
     {
         this.setTeam(isWhite);
         this.setName("Bishop");
+        this.setValue(3);
     }
 
     public Bishop(int x, int y, boolean isWhite)
@@ -27,6 +28,7 @@ public class Bishop extends Piece
         this.setY(y);
         this.setTeam(isWhite);
         this.setName("Bishop");
+        this.setValue(3);
     }
 
 
@@ -51,15 +53,6 @@ public class Bishop extends Piece
                         break;
                     }
                 }
-            }
-        }
-
-        for(int i = moves.size()-1; i >=0; i --) {
-            Board d = new Board(b);
-            Space s = moves.get(i);
-            d.setPos(s.getX(), s.getY(), this);
-            if (d.inCheck(this.getTeam())) {
-                moves.remove(i);
             }
         }
 

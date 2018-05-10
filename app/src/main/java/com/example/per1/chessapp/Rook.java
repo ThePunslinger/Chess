@@ -7,15 +7,15 @@ import java.util.ArrayList;
  */
 
 public class Rook extends Piece {
-    /**
-     * Constructor for objects of class Bishop
-     */
+
+    boolean hasMoved = false;
 
 
     public Rook(boolean isWhite)
     {
         this.setTeam(isWhite);
         this.setName("Rook");
+        this.setValue(5);
     }
 
     public Rook(int x, int y, boolean isWhite)
@@ -24,6 +24,7 @@ public class Rook extends Piece {
         this.setY(y);
         this.setTeam(isWhite);
         this.setName("Rook");
+        this.setValue(5);
     }
 
 
@@ -63,15 +64,16 @@ public class Rook extends Piece {
             }
         }
 
-        for(int i = moves.size()-1; i >=0; i --) {
-            Board d = new Board(b);
-            Space s = moves.get(i);
-            d.setPos(s.getX(), s.getY(), this);
-            if(d.inCheck(this.getTeam())) {
-                moves.remove(i);
-            }
-        }
-
         return moves;
+    }
+
+    @Override
+    public Piece move(int newX, int newY, Board b) {
+        hasMoved = true;
+        return super.move(newX, newY, b);
+    }
+
+    public boolean hasItMoved(){
+        return hasMoved;
     }
 }

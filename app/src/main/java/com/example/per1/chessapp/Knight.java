@@ -19,6 +19,16 @@ public class Knight extends Piece
     {
         this.setTeam(isWhite);
         this.setName("Knight");
+        this.setValue(3);
+    }
+
+    public Knight(int x, int y, boolean isWhite)
+    {
+        this.setX(x);
+        this.setY(y);
+        this.setTeam(isWhite);
+        this.setName("Knight");
+        this.setValue(3);
     }
 
 
@@ -40,15 +50,6 @@ public class Knight extends Piece
                     Space s = new Space(3-i,i);
                     moves.add(s);
                 }
-            }
-        }
-
-        for(int i = moves.size()-1; i >=0; i --) {
-            Board d = new Board(b);
-            Space s = moves.get(i);
-            d.setPos(s.getX(), s.getY(), this);
-            if (d.inCheck(this.getTeam())) {
-                moves.remove(i);
             }
         }
 

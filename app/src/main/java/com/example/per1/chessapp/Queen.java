@@ -18,6 +18,7 @@ public class Queen extends Piece
     {
         this.setTeam(isWhite);
         this.setName("Queen");
+        this.setValue(9);
     }
 
 

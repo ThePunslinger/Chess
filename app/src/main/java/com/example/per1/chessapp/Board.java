@@ -43,9 +43,13 @@ public class Board
                                 bPawn1, bPawn2, bPawn3, bPawn4, bPawn5, bPawn6, bPawn7, bPawn8};
         for(int c=0; c < 8; c ++) {
             board[0][c]=blackPieces[c];
+            blackPieces[c].setX(c);
+            blackPieces[c].setY(0);
         }
         for(int c=0; c < 8; c ++) {
             board[1][c]=blackPieces[c+8];
+            blackPieces[c].setX(c);
+            blackPieces[c].setY(1);
         }
 
         Rook wRook1 = new Rook(true);
@@ -68,10 +72,14 @@ public class Board
         Piece[] whitePieces = {wRook1, wKnight1, wBishop1, wQueen, wKing, wBishop2, wKnight2, wRook2,
                 wPawn1, wPawn2, wPawn3, wPawn4, wPawn5, wPawn6, wPawn7, wPawn8};
         for(int c=0; c < 8; c ++) {
-            board[7][c]=blackPieces[c];
+            board[7][c]=whitePieces[c];
+            whitePieces[c].setX(c);
+            whitePieces[c].setY(7);
         }
         for(int c=0; c < 8; c ++) {
-            board[6][c]=blackPieces[c+8];
+            board[6][c]=whitePieces[c+8];
+            whitePieces[c+8].setX(c);
+            whitePieces[c+8].setY(6);
         }
 
     }
@@ -124,7 +132,7 @@ public class Board
         return spaces;
     }
 
-    //possibly too much time!
+    //DEFINITELY too much time!
     public boolean inCheck(String team){
         if(team.equals("white")){
             for(int r = 0; r <8; r ++){

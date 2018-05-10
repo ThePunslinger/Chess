@@ -14,6 +14,7 @@ public class Pawn extends Piece
     {
         this.setTeam(isWhite);
         this.setName("Pawn");
+        this.setValue(1);
     }
 
 
@@ -32,10 +33,12 @@ public class Pawn extends Piece
         if(firstMove) {
             Space s = new Space(x, (int)(3.9-mod*0.2));
             //makes 3 for black, 4 for white
-            moves.add(s);
+            if(b.thePiece(s.getY(),s.getX()) == null){
+                moves.add(s);
+            }
         }
 
-        if(b.pieceAt(x,y+mod).equals("")){
+        if(b.thePiece(y+mod,x) == null){
             Space s = new Space(x, y+ mod);
             moves.add(s);
         }
@@ -50,21 +53,11 @@ public class Pawn extends Piece
             moves.add(s);
         }
 
-
-        for(int i = moves.size()-1; i >=0; i --) {
-            Board d = new Board(b);
-            Space s = moves.get(i);
-            d.setPos(s.getX(), s.getY(), this);
-            if (d.inCheck(this.getTeam())) {
-                moves.remove(i);
-            }
-        }
-
         return moves;
     }
 
-    public void move(int newX, int newY, Board b){
-        super.move(newX, newY, b);
+    public Piece move(int newX, int newY, Board b){
+        Piece p =super.move(newX, newY, b);
         firstMove = false;
         if(this.getTeam().equals("black") && newY == 7){
             Queen q = new Queen(false);
@@ -74,6 +67,7 @@ public class Pawn extends Piece
             Queen q = new Queen(true);
             b.setPos(newX,newY, q);
         }
+        return p;
     }
 }
 

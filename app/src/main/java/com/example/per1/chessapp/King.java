@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class King extends Piece
 {
     // instance variables - replace the example below with your own
-
+    boolean hasMoved = false;
 
     /**
-     * Constructor for objects of class Queen
+     * Constructor for objects of class King
      */
     public King(boolean isWhite)
     {
@@ -40,16 +40,37 @@ public class King extends Piece
             }
         }
 
-        for(int i = moves.size()-1; i >=0; i --) {
-            Board d = new Board(b);
-            Space s = moves.get(i);
-            d.setPos(s.getX(), s.getY(), this);
-            if (d.inCheck(this.getTeam())) {
-                moves.remove(i);
-            }
+        //Checks for Castling -- make sure can't castle out of check!
+        if(!hasMoved && b.thePiece(this.getY(),this.getX()+1) == null && b.thePiece(this.getY(),this.getX()+2) == null &&
+                b.thePiece(this.getY(),0) != null &&  b.thePiece(this.getY(),0).getName().equals("Rook")
+                && b.thePiece(this.getY(),0).getTeam().equals(this.getTeam()) && !((Rook)b.thePiece(this.getY(),0)).hasItMoved()
+                ){
+            Space s = new Space(6, this.getY());
+            moves.add(s);
+
         }
 
+        //removes inChecks
         return moves;
+
+    }
+
+    @Override
+    public Piece move(int newX, int newY, Board b) {
+        if(!hasMoved && newX == 1 && newY == this.getY()){
+            int oldX = this.getX();
+            Rook r = (Rook)b.thePiece(this.getY(), 7);
+            b.setPos(newX,newY,this);
+            b.setPos(oldX+1,this.getY(),r);
+            this.setX(newX);
+            this.setY(newY);
+            hasMoved = true;
+            return null;
+        }
+        else{
+            hasMoved = true;
+            return super.move(newX, newY, b);
+        }
     }
 
 }
