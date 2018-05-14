@@ -45,11 +45,12 @@ public class Game
     public static void main(String[] args)
     {
         Board board = new Board();
+        String winner = "Stalemate";
         //Game.test();
         int turns = 0;
         boolean gameInSession = true;
         while(gameInSession){
-            if(turns % 2 == 0){
+            if(turns % 2 == 0){ //white turns
                 //check if checkmate
                 boolean done = false;
                 for(int x = 7; x >= 0 && !done; x --){
@@ -65,13 +66,13 @@ public class Game
                         }
                     }
                 }
-                if(!done){Game.endGame("Player 2");}
+                if(!done){winner = "player2"; gameInSession = false;}
                 //Player 1 takes turn
                 if(turns == 0){board.thePiece(6,5).move(5, 4, board);}
                 if(turns == 2){board.thePiece(6,6).move(6,4, board);}
                 //Select piece, select space. If can't move piece to space, say so + repeat choice.
             }
-            else{
+            else{ //black turns
                 //check if checkmate
                 boolean done = false;
                 for(int x = 7; x >= 0 && !done; x --){
@@ -87,7 +88,7 @@ public class Game
                         }
                     }
                 }
-                if(!done){Game.endGame("Player 1");}
+                if(!done){winner = "Player 1"; gameInSession = false;}
                 //Player 2 takes turn
                 if(turns == 1){board.thePiece(1,4).move(4, 2, board);}
                 if(turns == 3){board.thePiece(0, 3).move(7,4,board);}
@@ -95,5 +96,6 @@ public class Game
             }
             turns++;
         }
+        Game.endGame(winner);
     }
 }

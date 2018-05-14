@@ -32,7 +32,7 @@ public class King extends Piece
                 // not out of board
                 else if(!(c>7) && !(c<0) &&
                         !(r>7) && !(r<0)){
-                    if(!this.getTeam().equals(b.pieceAt(c,r))){
+                    if(b.pieceAt(c,r) == null || !this.getTeam().equals(b.pieceAt(c,r))){
                         Space s = new Space(c,r);
                         moves.add(s);
                     }
@@ -41,27 +41,47 @@ public class King extends Piece
         }
 
         //Checks for Castling -- make sure can't castle out of check!
-        if(!hasMoved && b.thePiece(this.getY(),this.getX()+1) == null && b.thePiece(this.getY(),this.getX()+2) == null &&
-                b.thePiece(this.getY(),0) != null &&  b.thePiece(this.getY(),0).getName().equals("Rook")
-                && b.thePiece(this.getY(),0).getTeam().equals(this.getTeam()) && !((Rook)b.thePiece(this.getY(),0)).hasItMoved()
+        if(!hasMoved && b.thePiece(this.getY(),5) == null && b.thePiece(this.getY(),6) == null &&
+                b.thePiece(this.getY(),7) != null &&  b.thePiece(this.getY(),7).getName().equals("Rook")
+                && b.thePiece(this.getY(),7).getTeam().equals(this.getTeam())
+                && !((Rook)b.thePiece(this.getY(),7)).hasItMoved()
                 ){
             Space s = new Space(6, this.getY());
             moves.add(s);
 
         }
 
-        //removes inChecks
+        if(!hasMoved && b.thePiece(this.getY(),3) == null && b.thePiece(this.getY(),2) == null &&
+                b.thePiece(this.getY(),1) != null &&  b.thePiece(this.getY(),0).getName().equals("Rook")
+                && b.thePiece(this.getY(),0).getTeam().equals(this.getTeam())
+                && !((Rook)b.thePiece(this.getY(),0)).hasItMoved()
+                ){
+            Space s = new Space(2, this.getY());
+            moves.add(s);
+
+        }
+
         return moves;
 
     }
 
     @Override
     public Piece move(int newX, int newY, Board b) {
-        if(!hasMoved && newX == 1 && newY == this.getY()){
+        if(!hasMoved && (newX == 6 && newY == this.getY())){
             int oldX = this.getX();
             Rook r = (Rook)b.thePiece(this.getY(), 7);
             b.setPos(newX,newY,this);
             b.setPos(oldX+1,this.getY(),r);
+            this.setX(newX);
+            this.setY(newY);
+            hasMoved = true;
+            return null;
+        }
+        else if(!hasMoved && (newX == 2 && newY == this.getY())){
+            int oldX = this.getX();
+            Rook r = (Rook)b.thePiece(this.getY(), 0);
+            b.setPos(newX,newY,this);
+            b.setPos(oldX-1,this.getY(),r);
             this.setX(newX);
             this.setY(newY);
             hasMoved = true;

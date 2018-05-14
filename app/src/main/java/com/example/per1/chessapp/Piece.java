@@ -8,8 +8,8 @@ public abstract class Piece
     private int x;
     private int y;
     private int value;
-    boolean white = true;
-    String name;
+    private boolean white = true;
+    private String name;
 
 
     public Piece move(int newX, int newY, Board b){
@@ -30,6 +30,10 @@ public abstract class Piece
             if (d.inCheck(this.getTeam())) {
                 moves.remove(i);
             }
+        }
+        //castling removes
+        if(this.getName().equals("King")){
+            //REMOVE CASTLE CHECK CRAP!
         }
 
     }
@@ -54,21 +58,14 @@ public abstract class Piece
          y = val;
     }
 
-    public int getValue(){
-        return value;
-    }
+    public int getValue(){return value;}
     public void setValue(int val){
         value = val;
     }
 
 
     public void setTeam(boolean isWhite){
-        if(isWhite){
-            white = true;
-        }
-        else{
-            white = false;
-        }
+        white = isWhite;
     }
     public String getTeam(){
 
