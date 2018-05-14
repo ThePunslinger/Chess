@@ -40,12 +40,14 @@ public class Knight extends Piece
         ArrayList<Space> moves = new ArrayList<>();
         for(int i = 2; i>=-2; i--){
             if(i != 0){
-                if(x+3-Math.abs(i)<=7 && y+i>=0 && y+i<=7 &&
+                if(x+3-Math.abs(i)<=7 && y+i>=0 && y+i<=7 && this.getTeam() != null &&
+                        b.pieceAt(x+3-Math.abs(i),y+i) != null &&
                         !b.pieceAt(x+3-Math.abs(i),y+i).equals(this.getTeam())){
                     Space s = new Space(3-i,i);
                     moves.add(s);
                 }
-                if(x-3+Math.abs(i)>= 0 && y+i>=0 && y+i<=7 &&
+                if(x-3+Math.abs(i)>= 0 && y+i>=0 && y+i<=7 && this.getTeam() != null &&
+                        b.pieceAt(x-3+Math.abs(i),y+i) != null &&
                         !b.pieceAt(x+Math.abs(i)-3,y+i).equals(this.getTeam())){
                     Space s = new Space(3-i,i);
                     moves.add(s);

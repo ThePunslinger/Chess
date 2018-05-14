@@ -42,13 +42,13 @@ public class Pawn extends Piece
             Space s = new Space(x, y+ mod);
             moves.add(s);
         }
-        if(x>0 && !b.pieceAt(x-1,y+mod ).equals(this.getTeam())
-                && !b.pieceAt(x-1,y+mod).equals("")){
+        if(x>0 && b.pieceAt(x-1,y+mod) != null &&
+            !b.pieceAt(x-1,y+mod ).equals(this.getTeam())){
             Space s = new Space(x-1, y+ mod);
             moves.add(s);
         }
-        if(x<7 && !b.pieceAt(x+1,y+mod ).equals(this.getTeam())
-                && !b.pieceAt(x+1,y+mod).equals("")){
+        if(x<7 && b.pieceAt(x+1,y+mod) != null
+                && !b.pieceAt(x+1,y+mod ).equals(this.getTeam())){
             Space s = new Space(x+1, y+ mod);
             moves.add(s);
         }

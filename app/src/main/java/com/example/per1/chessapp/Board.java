@@ -115,7 +115,7 @@ public class Board
     public String pieceAt(int x, int y){
         Piece p = board[y][x];
         if(p == null){
-            return "";
+            return null;
         }
         return p.getTeam();
     }

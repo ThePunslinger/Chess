@@ -56,7 +56,10 @@ public class Game
                     for(int y = 7; y >= 0 && !done; y --){
                         Piece p = board.thePiece(y,x);
                         if(p != null && p.getTeam().equalsIgnoreCase("white")){
-                            if(p.canMove(board).size() > 0){
+                            //ADDED
+                            ArrayList<Space> list = p.canMove(board);
+                            p.removeChecks(list,board);
+                            if(list.size() > 0){
                                 done = true;
                             }
                         }
@@ -75,7 +78,10 @@ public class Game
                     for(int y = 7; y >= 0 && !done; y --){
                         Piece p = board.thePiece(y,x);
                         if(p != null && p.getTeam().equalsIgnoreCase("black")){
-                            if(p.canMove(board).size() > 0){
+                            //Added
+                            ArrayList<Space> list = p.canMove(board);
+                            p.removeChecks(list,board);
+                            if(list.size() > 0){
                                 done = true;
                             }
                         }
