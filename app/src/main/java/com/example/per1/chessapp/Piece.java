@@ -16,6 +16,9 @@ public abstract class Piece
         Piece p = b.thePiece(newY, newX);
         b.setPos(newX,newY,this);
         b.setPos(x,y,null);
+        Space old = new Space(x,y);
+        Space next = new Space(newX, newY);
+        b.setLastMove(this, old, next);
         x = newX;
         y = newY;
         return p;
@@ -32,8 +35,26 @@ public abstract class Piece
             }
         }
         //castling removes
-        if(this.getName().equals("King")){
-            //REMOVE CASTLE CHECK CRAP!
+        while(this.getName().equals("King") && Math.abs(moves.get(moves.size()-1).getX())>1){
+            if(b.inCheck(this.getTeam())) {
+                moves.remove(moves.size() - 1);
+            }
+        }
+
+        while(this.getName().equals("King") && Math.abs(moves.get(moves.size()-1).getX())>1){
+
+            int i;
+            if(moves.get(moves.size()-1).getX() == 2){
+                 i = 3;
+            }
+            else {
+                 i = 5;
+            }
+            Board d = new Board(b);
+            d.setPos(i, this.getY(), this);
+            if (d.inCheck(this.getTeam())) {
+                moves.remove(moves.size() - 1);
+            }
         }
 
     }
@@ -59,16 +80,13 @@ public abstract class Piece
     }
 
     public int getValue(){return value;}
-    public void setValue(int val){
-        value = val;
-    }
+    public void setValue(int val){value = val;}
 
 
     public void setTeam(boolean isWhite){
         white = isWhite;
     }
     public String getTeam(){
-
         if(white)
             return "white";
         return "black";

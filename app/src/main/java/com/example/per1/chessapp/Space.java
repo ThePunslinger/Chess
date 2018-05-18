@@ -23,16 +23,20 @@ public class Space
         this.y = y;
     }
 
+    @Override
+    public String toString() {
+        return
+                "x=" + x +
+                ", y=" + y + ";";
+    }
 
     public int getX()
     {
-        // put your code here
         return x;
     }
 
     public int getY()
     {
-        // put your code here
         return y;
     }
 }

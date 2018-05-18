@@ -34,11 +34,11 @@ public class Rook extends Piece {
 
 
         for(int mod = 1; mod >= -1; mod -=2) {
-            for (int y = this.getY(); y <= 7 && y>=0; y+=mod) {
+            for (int y = this.getY() + mod; y <= 7 && y>=0; y+=mod) {
                 if (b.pieceAt(this.getX(), y) == null) {
                     moves.add(new Space(this.getX(), y));
                 }
-                else if (!b.pieceAt(this.getX(), y).equals(this.getTeam())) {
+                else if (b.pieceAt(this.getX(), y).equals(this.getTeam())) {
                     break;
                 }
                 else {
@@ -50,11 +50,11 @@ public class Rook extends Piece {
         }
 
         for(int mod = 1; mod >= -1; mod -=2) {
-            for (int x = this.getX(); x <= 7 && x>=0; x+=mod) {
+            for (int x = this.getX() + mod; x <= 7 && x>=0; x+=mod) {
                 if (b.pieceAt(x, this.getY()) == null) {
                     moves.add(new Space(x, this.getY()));
                 }
-                else if (!b.pieceAt(x, this.getY()).equals(this.getTeam())) {
+                else if (b.pieceAt(x, this.getY()).equals(this.getTeam())) {
                     break;
                 }
                 else {

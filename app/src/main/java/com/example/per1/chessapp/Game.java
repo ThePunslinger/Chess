@@ -62,7 +62,10 @@ public class Game
                             p.removeChecks(list,board);
                             if(list.size() > 0){
                                 done = true;
+                                if(turns<8)
+                                System.out.println(p.getName()+"  " + p.getTeam() +": " + list.toString());
                             }
+
                         }
                     }
                 }
@@ -84,7 +87,10 @@ public class Game
                             p.removeChecks(list,board);
                             if(list.size() > 0){
                                 done = true;
+                                if(turns<8)
+                                System.out.println(p.getName() + "  " + p.getTeam() + ": " + list.toString());
                             }
+
                         }
                     }
                 }
@@ -92,6 +98,8 @@ public class Game
                 //Player 2 takes turn
                 if(turns == 1){board.thePiece(1,4).move(4, 2, board);}
                 if(turns == 3){board.thePiece(0, 3).move(7,4,board);}
+                //Piece afk = new Bishop(7,4,false);
+                //board.setPos(7,4,afk);}
                 //Select piece, select space. If can't move piece to space, say so + repeat choice.
             }
             turns++;

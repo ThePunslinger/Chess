@@ -15,6 +15,7 @@ public class Board
     int blackKingYPos=0;
     int whiteKingXPos=4;
     int whiteKingYPos=7;
+    String lastMove = "Welcome";
 
     /**
      * Constructor for objects of class Board
@@ -130,6 +131,14 @@ public class Board
         spaces[1]= new Space(blackKingXPos, blackKingYPos);
         spaces[0] = new Space(whiteKingXPos,whiteKingYPos);
         return spaces;
+    }
+
+    public void setLastMove(Piece p, Space old, Space next){
+        lastMove = p.getName() + ": " + old.toString() + " to " + next.toString();
+    }
+
+    public String getLastMove(){
+        return lastMove;
     }
 
     //DEFINITELY too much time!

@@ -38,6 +38,17 @@ public class Pawn extends Piece
             }
         }
 
+        String last = b.getLastMove();
+        if(last.substring(0,4).equals("Pawn") && y == (int)(3.9 + mod*.2)
+                && last.substring(last.indexOf(",") + 1, last.indexOf(",") + 2).equals((int)(3.9 + mod*2.2) + "")
+                && last.substring(last.indexOf("to") + 5, last.indexOf("to") + 6).equals((int)(3.9 + mod*.2) + "")
+                && (last.substring(last.indexOf("to") +3, last.indexOf("to") +4).equals(x-1)
+                || last.substring(last.indexOf("to") +3, last.indexOf("to") +4).equals(x+1))){
+            Space s = new Space(Integer.parseInt(last.substring(last.indexOf("to") +3, last.indexOf("to") +4)),y+mod);
+            moves.add(s);
+
+        }
+
         if(b.thePiece(y+mod,x) == null){
             Space s = new Space(x, y+ mod);
             moves.add(s);
