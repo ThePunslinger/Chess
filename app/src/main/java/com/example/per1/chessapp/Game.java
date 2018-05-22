@@ -97,7 +97,7 @@ public class Game
                                 System.out.println(sp); // cool thing
                                 for (int i = 0; i < moves.size(); i++) {
                                     System.out.println(moves.get(i)); // cool thing
-                                    if (sp.equals(moves.get(i))) {
+                                    if (sp.toString().equals(moves.get(i).toString())) {
                                         turnOver = true;
                                         p.move(sp.getX(), sp.getY(), board);
                                         break;
@@ -151,6 +151,7 @@ public class Game
                             Piece p = board.thePiece(s.getY(),s.getX());
                             ArrayList<Space> moves = p.canMove(board);
                             p.removeChecks(moves, board);
+                            System.out.println(moves); // cool thing
                             if(moves.size() == 0){
                                 System.out.println("Error: " + p.getName()+" has no legal moves");
                             }
@@ -158,15 +159,18 @@ public class Game
                                 System.out.print("Please Select Space: ");
                                 int c = in.nextInt();
                                 Space sp = Board.convertSpace(c);
+                                System.out.println(sp); // cool thing
                                 for (int i = 0; i < moves.size(); i++) {
-                                    if (sp.equals(moves.get(i))) {
+                                    System.out.println(moves.get(i)); // cool thing
+                                    if (sp.toString().equals(moves.get(i).toString())) {
                                         turnOver = true;
                                         p.move(sp.getX(), sp.getY(), board);
                                         break;
                                     }
                                 }
-                                if (!turnOver)
+                                if (!turnOver) {
                                     System.out.println("Error: " + p.getName() + " cannot move there");
+                                }
                             }
                         }
                         else if(board.pieceAt(s.getX(), s.getY()) == null){

@@ -49,8 +49,8 @@ public class Board
         }
         for(int c=0; c < 8; c ++) {
             board[1][c]=blackPieces[c+8];
-            blackPieces[c].setX(c);
-            blackPieces[c].setY(1);
+            blackPieces[c+8].setX(c);
+            blackPieces[c+8].setY(1);
         }
 
         Rook wRook1 = new Rook(true);

@@ -69,33 +69,33 @@ public class Queen extends Piece
             }
         }
 
-        for(int x = 1; this.getX()+x < 8 && this.getY()+x >=0; x++){
-            if(b.thePiece(this.getY()-x,this.getX() + x) == null){
-                Space s = new Space(this.getX()+x,this.getY() - x);
-                moves.add(s);
-            }
-            else if(b.thePiece(this.getY()-x,this.getX() + x).getTeam().equals(this.getTeam())){
-                break;
-            }
-            else{
-                Space s = new Space(this.getX()+x,this.getY() - x);
-                moves.add(s);
-                break;
+        for(int x = 1; this.getX()+x < 8 && this.getY()-x >=0; x++){//check
+            if(this.getY()-x >=0 && this.getX()+x <=7) {
+                if (b.thePiece(this.getY() - x, this.getX() + x) == null) {
+                    Space s = new Space(this.getX() + x, this.getY() - x);
+                    moves.add(s);
+                } else if (b.thePiece(this.getY() -x, this.getX() + x).getTeam().equals(this.getTeam())) {
+                    break;
+                } else {
+                    Space s = new Space(this.getX() + x, this.getY() - x);
+                    moves.add(s);
+                    break;
+                }
             }
         }
 
         for(int x = -1; this.getX()+x >=0 && this.getY()-x < 8; x--){
-            if(b.thePiece(this.getY()-x,this.getX() + x) == null){
-                Space s = new Space(this.getX()+x,this.getY() - x);
-                moves.add(s);
-            }
-            else if(b.thePiece(this.getY()-x,this.getX() + x).getTeam().equals(this.getTeam())){
-                break;
-            }
-            else{
-                Space s = new Space(this.getX()+x,this.getY() - x);
-                moves.add(s);
-                break;
+            if(this.getX()+x>=0 && this.getY()-x<=7) {
+                if (b.thePiece(this.getY() - x, this.getX() + x) == null) {
+                    Space s = new Space(this.getX() + x, this.getY() - x);
+                    moves.add(s);
+                } else if (b.thePiece(this.getY() - x, this.getX() + x).getTeam().equals(this.getTeam())) {
+                    break;
+                } else {
+                    Space s = new Space(this.getX() + x, this.getY() - x);
+                    moves.add(s);
+                    break;
+                }
             }
         }
 
