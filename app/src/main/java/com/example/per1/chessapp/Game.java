@@ -1,6 +1,6 @@
 package com.example.per1.chessapp;
 
-import android.util.Log;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 /**
@@ -42,10 +42,13 @@ public class Game
         System.out.println("Turns: ");
     }
 
+
+    //ADD USER INPUT!
     public static void main(String[] args)
     {
         Board board = new Board();
         String winner = "Stalemate";
+        Scanner in = new Scanner(System.in);
         //Game.test();
         int turns = 0;
         boolean gameInSession = true;
@@ -71,8 +74,48 @@ public class Game
                 }
                 if(!done){winner = "player2"; gameInSession = false;}
                 //Player 1 takes turn
-                if(turns == 0){board.thePiece(6,5).move(5, 4, board);}
-                if(turns == 2){board.thePiece(6,6).move(6,4, board);}
+                else { //Currently only text based!
+                    boolean turnOver = false;
+                    while(!turnOver) {
+                        System.out.print("Please Select Piece: ");
+                        int a = in.nextInt();
+                        Space s = Board.convertSpace(a);
+                        //check to see if piece selected is of same team
+                        if (board.pieceAt(s.getX(), s.getY()) != null &&
+                        board.pieceAt(s.getX(), s.getY()).equalsIgnoreCase("white")){
+                            Piece p = board.thePiece(s.getY(),s.getX());
+                            ArrayList<Space> moves = p.canMove(board);
+                            p.removeChecks(moves, board);
+                            System.out.println(moves); // cool thing
+                            if(moves.size() == 0){
+                                System.out.println("Error: " + p.getName()+" has no legal moves");
+                            }
+                            else{
+                                System.out.print("Please Select Space: ");
+                                int c = in.nextInt();
+                                Space sp = Board.convertSpace(c);
+                                System.out.println(sp); // cool thing
+                                for (int i = 0; i < moves.size(); i++) {
+                                    System.out.println(moves.get(i)); // cool thing
+                                    if (sp.equals(moves.get(i))) {
+                                        turnOver = true;
+                                        p.move(sp.getX(), sp.getY(), board);
+                                        break;
+                                    }
+                                }
+                                if (!turnOver) {
+                                    System.out.println("Error: " + p.getName() + " cannot move there");
+                                }
+                            }
+                        }
+                        else if(board.pieceAt(s.getX(), s.getY()) == null){
+                            System.out.println("Error: That space does not contain a piece");
+                        }
+                        else{
+                            System.out.println("Error: It's white's turn");
+                        }
+                    }
+                }
                 //Select piece, select space. If can't move piece to space, say so + repeat choice.
             }
             else{ //black turns
@@ -96,10 +139,44 @@ public class Game
                 }
                 if(!done){winner = "Player 1"; gameInSession = false;}
                 //Player 2 takes turn
-                if(turns == 1){board.thePiece(1,4).move(4, 2, board);}
-                if(turns == 3){board.thePiece(0, 3).move(7,4,board);}
-                //Piece afk = new Bishop(7,4,false);
-                //board.setPos(7,4,afk);}
+                else { //Currently only text based!
+                    boolean turnOver = false;
+                    while(!turnOver) {
+                        System.out.print("Please Select Piece: ");
+                        int a = in.nextInt();
+                        Space s = Board.convertSpace(a);
+                        //check to see if piece selected is of same team
+                        if (board.pieceAt(s.getX(), s.getY()) != null &&
+                                board.pieceAt(s.getX(), s.getY()).equalsIgnoreCase("black")){
+                            Piece p = board.thePiece(s.getY(),s.getX());
+                            ArrayList<Space> moves = p.canMove(board);
+                            p.removeChecks(moves, board);
+                            if(moves.size() == 0){
+                                System.out.println("Error: " + p.getName()+" has no legal moves");
+                            }
+                            else{
+                                System.out.print("Please Select Space: ");
+                                int c = in.nextInt();
+                                Space sp = Board.convertSpace(c);
+                                for (int i = 0; i < moves.size(); i++) {
+                                    if (sp.equals(moves.get(i))) {
+                                        turnOver = true;
+                                        p.move(sp.getX(), sp.getY(), board);
+                                        break;
+                                    }
+                                }
+                                if (!turnOver)
+                                    System.out.println("Error: " + p.getName() + " cannot move there");
+                            }
+                        }
+                        else if(board.pieceAt(s.getX(), s.getY()) == null){
+                            System.out.println("Error: That space does not contain a piece");
+                        }
+                        else{
+                            System.out.println("Error: It's black's turn");
+                        }
+                    }
+                }
                 //Select piece, select space. If can't move piece to space, say so + repeat choice.
             }
             turns++;

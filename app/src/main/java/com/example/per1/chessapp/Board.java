@@ -141,6 +141,13 @@ public class Board
         return lastMove;
     }
 
+    public static Space convertSpace(int num){
+        int x = num%8;
+        int y = num/8;
+        Space s = new Space(x,y);
+        return s;
+    }
+
     //DEFINITELY too much time!
     public boolean inCheck(String team){
         if(team.equals("white")){
