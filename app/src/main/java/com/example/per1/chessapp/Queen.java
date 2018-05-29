@@ -16,6 +16,11 @@ public class Queen extends Piece
      */
     public Queen(boolean isWhite)
     {
+        int alpha = 0;
+        if(!isWhite){
+            alpha =6;
+        }
+        this.setImageIndex(alpha+4);
         this.setTeam(isWhite);
         this.setName("Queen");
         this.setValue(9);

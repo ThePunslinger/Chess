@@ -17,6 +17,16 @@ public class Board
     int whiteKingYPos=7;
     String lastMove = "Welcome";
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
     /**
      * Constructor for objects of class Board
      */
@@ -94,6 +104,30 @@ public class Board
             for(int c = 0; c<8; c ++) {
                 board[r][c] = b.thePiece(r,c);
             }
+        }
+    }
+
+
+
+    public void textShow(){
+        for(int r = 0; r < board.length; r++){
+            for(int c = 0; c < board[0].length; c++){
+                if(board[r][c] != null){
+                    String letter = board[r][c].getName().substring(0,1);
+                    if(board[r][c].getName().equals("Knight")){
+                        letter = "N";
+                    }
+                    String cat = ANSI_RED;
+                    if(board[r][c].getTeam().equals("black")){
+                        cat = ANSI_BLUE;
+                    }
+                    System.out.print(cat + " " + letter + " " + ANSI_RESET);
+                }
+                else{
+                    System.out.print(" O ");
+                }
+            }
+            System.out.println("");
         }
     }
 

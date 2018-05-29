@@ -13,6 +13,11 @@ public class Rook extends Piece {
 
     public Rook(boolean isWhite)
     {
+        int alpha = 0;
+        if(!isWhite){
+            alpha =6;
+        }
+        this.setImageIndex(alpha+3);
         this.setTeam(isWhite);
         this.setName("Rook");
         this.setValue(5);
@@ -20,6 +25,11 @@ public class Rook extends Piece {
 
     public Rook(int x, int y, boolean isWhite)
     {
+        int alpha = 0;
+        if(!isWhite){
+            alpha =6;
+        }
+        this.setImageIndex(alpha+3);
         this.setX(x);
         this.setY(y);
         this.setTeam(isWhite);

@@ -17,6 +17,15 @@ public class Game
     int blackScore = 0;
     boolean gameInSession = true;
 
+
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+
     /**
      * Constructor for objects of class Game
      */
@@ -53,7 +62,9 @@ public class Game
         int turns = 0;
         boolean gameInSession = true;
         while(gameInSession){
+            board.textShow();
             if(turns % 2 == 0){ //white turns
+                System.out.println("\n" + ANSI_RED+"Red's " + ANSI_RESET +"Turn");
                 //check if checkmate
                 boolean done = false;
                 for(int x = 7; x >= 0 && !done; x --){
@@ -74,7 +85,7 @@ public class Game
                 }
                 if(!done){winner = "player2"; gameInSession = false;}
                 //Player 1 takes turn
-                else { //Currently only text based!
+                else { //Currently only text based
                     boolean turnOver = false;
                     while(!turnOver) {
                         System.out.print("Please Select Piece: ");
@@ -120,6 +131,7 @@ public class Game
             }
             else{ //black turns
                 //check if checkmate
+                System.out.println("\n" + ANSI_BLUE+ "Blue's " + ANSI_RESET+ "Turn");
                 boolean done = false;
                 for(int x = 7; x >= 0 && !done; x --){
                     for(int y = 7; y >= 0 && !done; y --){

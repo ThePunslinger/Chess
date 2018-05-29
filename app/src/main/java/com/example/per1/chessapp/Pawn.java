@@ -12,6 +12,11 @@ public class Pawn extends Piece
 
     public Pawn(boolean isWhite)
     {
+        int alpha = 0;
+        if(!isWhite){
+            alpha =6;
+        }
+        this.setImageIndex(alpha);
         this.setTeam(isWhite);
         this.setName("Pawn");
         this.setValue(1);

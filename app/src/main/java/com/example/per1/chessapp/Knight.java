@@ -24,6 +24,11 @@ public class Knight extends Piece
 
     public Knight(int x, int y, boolean isWhite)
     {
+        int alpha = 0;
+        if(!isWhite){
+            alpha =6;
+        }
+        this.setImageIndex(alpha+2);
         this.setX(x);
         this.setY(y);
         this.setTeam(isWhite);

@@ -10,6 +10,7 @@ public abstract class Piece
     private int value;
     private boolean white = true;
     private String name;
+    int imageIndex;
 
 
     public Piece move(int newX, int newY, Board b){
@@ -81,6 +82,13 @@ public abstract class Piece
 
     public int getValue(){return value;}
     public void setValue(int val){value = val;}
+
+    public int getImageIndex(){
+        return imageIndex;
+    }
+    public void setImageIndex(int a){
+        imageIndex = a;
+    }
 
 
     public void setTeam(boolean isWhite){

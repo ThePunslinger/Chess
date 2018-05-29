@@ -17,6 +17,11 @@ public class Bishop extends Piece
 
     public Bishop(boolean isWhite)
     {
+        int alpha = 0;
+        if(!isWhite){
+            alpha =6;
+        }
+        this.setImageIndex(alpha+1);
         this.setTeam(isWhite);
         this.setName("Bishop");
         this.setValue(3);
@@ -24,6 +29,11 @@ public class Bishop extends Piece
 
     public Bishop(int x, int y, boolean isWhite)
     {
+        int alpha = 0;
+        if(!isWhite){
+            alpha =6;
+        }
+        this.setImageIndex(alpha+1);
         this.setX(x);
         this.setY(y);
         this.setTeam(isWhite);
