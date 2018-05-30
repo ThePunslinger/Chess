@@ -13,9 +13,11 @@ public class Rook extends Piece {
 
     public Rook(boolean isWhite)
     {
+        this.setSymbol("♖");
         int alpha = 0;
         if(!isWhite){
             alpha =6;
+            this.setSymbol("♜");
         }
         this.setImageIndex(alpha+3);
         this.setTeam(isWhite);

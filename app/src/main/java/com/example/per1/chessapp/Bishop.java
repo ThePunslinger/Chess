@@ -17,9 +17,11 @@ public class Bishop extends Piece
 
     public Bishop(boolean isWhite)
     {
+        this.setSymbol("♗");
         int alpha = 0;
         if(!isWhite){
             alpha =6;
+            this.setSymbol("♝");
         }
         this.setImageIndex(alpha+1);
         this.setTeam(isWhite);

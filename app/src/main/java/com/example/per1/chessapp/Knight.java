@@ -24,9 +24,11 @@ public class Knight extends Piece
 
     public Knight(int x, int y, boolean isWhite)
     {
+        this.setSymbol("♘");
         int alpha = 0;
         if(!isWhite){
             alpha =6;
+            this.setSymbol("♞");
         }
         this.setImageIndex(alpha+2);
         this.setX(x);
@@ -34,6 +36,7 @@ public class Knight extends Piece
         this.setTeam(isWhite);
         this.setName("Knight");
         this.setValue(3);
+
     }
 
 

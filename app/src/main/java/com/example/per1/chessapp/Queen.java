@@ -16,9 +16,11 @@ public class Queen extends Piece
      */
     public Queen(boolean isWhite)
     {
+        this.setSymbol("♕");
         int alpha = 0;
         if(!isWhite){
             alpha =6;
+            this.setSymbol("♛");
         }
         this.setImageIndex(alpha+4);
         this.setTeam(isWhite);

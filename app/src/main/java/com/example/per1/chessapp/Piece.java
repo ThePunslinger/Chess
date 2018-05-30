@@ -11,6 +11,17 @@ public abstract class Piece
     private boolean white = true;
     private String name;
     int imageIndex;
+    String symbol;
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+
 
 
     public Piece move(int newX, int newY, Board b){

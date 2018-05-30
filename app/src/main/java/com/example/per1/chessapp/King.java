@@ -16,13 +16,16 @@ public class King extends Piece
      */
     public King(boolean isWhite)
     {
+        this.setSymbol("♔");
         int alpha = 0;
         if(!isWhite){
             alpha =6;
+            this.setSymbol("♚");
         }
         this.setImageIndex(alpha+5);
         this.setTeam(isWhite);
         this.setName("King");
+
     }
 
 
